@@ -5,3 +5,8 @@ export const userValidate = Joi.object({
   email: Joi.string().required().email({tlds: { allow: ['com'] }}),
   password: Joi.string().required().min(6),
 })
+
+export const postValidate = Joi.object({
+  title : Joi.string().required().min(5),
+  content: Joi.string().required(),
+})
