@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.route("/create-user").post(upload.single('image'), createUser)
 router.route("/verify-user").post(VertifyCode)
-router.route("/login-user").get(loginUser)
+router.route("/login-user").post(loginUser)
 router.route("/get-one-user").get(get0neUser)
 // router.route("/send-otp").get(SendOtp)
 
