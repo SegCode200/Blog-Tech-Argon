@@ -2,7 +2,7 @@ import { UserModel } from "../Model/userModel.js";
 import { userValidate } from "../Utils/Schema.js";
 import bcrypt from "bcryptjs";
 import otpGenerator from "otp-generator";
-import {SendverficationCode} from "../Lib/Email.js"
+import {openingMail} from "../Lib/Email.js"
 import streamifier from "streamifier"
 import cloudinary from "../Lib/Cloudinary.js";
 import jwt from 'jsonwebtoken'
@@ -85,9 +85,10 @@ export const createUser = async (req, res) => {
     if (!user) {
       return res.status(500).json({ error: "Failed to create user" });
     }
-   await SendverficationCode(email,otp)
+   await openingMail(email,otp).then(()=>{
+     return res.status(200).json({ status: "success", data: user });
+   })
 
-    return res.status(200).json({ status: "success", data: user });
   } catch (error) {
     console.log(error)
     return res.status(401).json({ message: "Error while creating user" });
