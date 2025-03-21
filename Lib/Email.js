@@ -1,14 +1,14 @@
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
+import env from "dotenv"
+env.config()
 
 
-const GOOGLE_ID =
-    "173614955323-iddop2ac3jefn6sgib2mmir1e1vujud4.apps.googleusercontent.com";
-const GOOGLE_SECRET = "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";
-const GOOGLE_REFRESHTOKEN =
-    "1//04LpobI9X3RC5CgYIARAAGAQSNwF-L9Ir-ptaZT9AcnzG_5i6rcXs2FhhP8yS7aoqtSKjp_8QlE_yeFpZ8S-9LjcbmXLRcRyzGAw";
+const GOOGLE_ID = process.env.GOOGLE_ID
+const GOOGLE_SECRET = process.env.GOOGLE_SECRET
+const GOOGLE_REFRESHTOKEN = process.env.GOOGLE_REFRESHTOKEN
 
-const GOOGLE_URL = "https://developer.google.com/oauthplayground";
+const GOOGLE_URL = process.env.GOOGLE_URL
 
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_URL);
 oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
